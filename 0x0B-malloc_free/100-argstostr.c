@@ -9,6 +9,7 @@
 char *argstostr(int ac, char **av)
 {
 	int x, y;
+	int i = 0;
 	int len = 0;
 	char *avn;
 
@@ -33,12 +34,12 @@ char *argstostr(int ac, char **av)
 	{
 		for (y = 0; av[x][y] != '\0'; y++)
 		{
-			avn[len] = av[x][y];
-			len++;
+			avn[i] = av[x][y];
+			i++;
 		}
-		avn[len] = ' ';
-		len++;
+		avn[i] = '\n';
+		i++;
 	}
-	avn[len] = '\0';
+	avn[i] = '\0';
 	return (avn);
 }
