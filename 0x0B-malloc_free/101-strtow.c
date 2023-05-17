@@ -72,7 +72,7 @@ char **strtow(char *str)
 
 		if (split[a] == NULL)
 		{
-			for (;a >= 0; a--)
+			for (; a >= 0; a--)
 				free(split[a]);
 			free(split);
 			return (NULL);
