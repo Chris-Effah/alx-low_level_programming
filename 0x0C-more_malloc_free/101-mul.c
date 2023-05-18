@@ -33,14 +33,6 @@ int _strlen(char *s)
 	return (x);
 }
 /**
-  * errors - handles errors for main
-  */
-void errors(void)
-{
-	printf("Error\n");
-	exit(98);
-}
-/**
  * main - multiplies two numbers
  * @argc: number of arguments
  * @argv: name of arguments
@@ -48,44 +40,27 @@ void errors(void)
  */
 int main(int argc, char *argv[])
 {
-	char *s1, *s2;
-	int len1, len2, len, x, dig1, dig2, *res, c, a = 0;
+	int x, y;
+	unsigned long mul;
 
-	s1 = argv[1], s2 = argv[2];
-	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		errors();
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-	len = len1 + len2 + 1;
-	res = malloc(sizeof(int) * len);
-	if (!res)
-		return (1);
-	for (x = 0; x <= len1 + len2; x++)
-		res[x] = 0;
-	for (len1 = len1 - 1; len1 >= 0; len1--)
+	if (argc != 3)
 	{
-		dig1 = s1[len1] - '0';
-		c = 0;
-		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		printf("Error\n");
+		exit(98);
+	}
+	for (x = 1; x < argc; x++)
+	{
+		for (y = 0; argv[x][y] != '\0'; y++)
 		{
-			dig2 = s2[len2] - '0';
-			c += res[len1 + len2 + 1] + (dig1 * dig2);
-			res[len1 + len2 + 1] = c % 10;
-			c /= 10;
+			if (argv[x][y] > 57 || argv[x][y] < 48)
+			{
+				printf("Error\n");
+				exit(98);
+			}
 		}
-		if (c > 0)
-			res[len1 + len2 + 1] += c;
 	}
-	for (x = 0; x < len - 1; x++)
-	{
-		if (res[x])
-			a = 1;
-		if (a)
-			_putchar(res[x] + '0');
-	}
-	if (!a)
-		_putchar('\0');
-	_putchar('\n');
-	free(res);
+	mul = atol(argv[1]) * atol(argv[2]);
+
+	printf("%lu\n", mul);
 	return (0);
 }
