@@ -27,12 +27,15 @@ int main(int argc, char *argv[])
 	}
 	a = (char *)main;
 
-	while (x < bytes)
+	for (x = 0; x < bytes; x++)
 	{
-		printf("%02x", a[x]);
+		if (x == bytes - 1)
+		{
+			printf("%02hhx\n", a[x]);
+			break;
+		}
+		printf("%02hhx", a[x]);
 		x++;
 	}
-	printf("\n");
-
 	return (0);
 }
