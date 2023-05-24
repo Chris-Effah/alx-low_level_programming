@@ -1,6 +1,5 @@
-#include "function_pointers.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
   * main - a function that prints the opcodes of its own main function
   * @argc: number of arguments
@@ -9,7 +8,7 @@
   */
 int main(int argc, char *argv[])
 {
-	int bytes, x = 0;
+	int bytes, x;
 	char *a;
 
 	if (argc != 2)
