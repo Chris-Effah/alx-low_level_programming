@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
 			break;
 		}
 		printf("%02hhx", a[x]);
-		x++;
 	}
 	return (0);
 }
