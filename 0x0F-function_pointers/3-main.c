@@ -4,12 +4,11 @@
 #include "3-calc.h"
 /**
   * main - prints simple operations
-  * atoi - function to convert arguments to int
   * @argc: number of arguments
   * @argv: arguments to be converted to int
   * Return: 0
   */
-int main(int__attribute__((__unused__)) argc, char *argv[])
+int main(int__attribute__((__unused__))argc, char *argv[])
 {
 	int num1, num2;
 	char *op;
