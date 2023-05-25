@@ -8,12 +8,11 @@
   */
 int sum_them_all(const unsigned int n, ...)
 {
-	unsigned int x, sum = 0;
 
 	va_list para;
+	unsigned int x, sum = 0;
 
 	va_start(para, n);
-	va_arg(para, int);
 
 	for (x = 0; x < n; x++)
 	{
