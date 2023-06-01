@@ -1,12 +1,12 @@
-; Declare needed C  functions
+section .data
+msg: db "Hello, Holberton", 0
+fmt: db "%s", 10, 0
 
-section .data                    ; msg: db "Hello, Holberton", 0
-                                 ; fmt: db "%s", 0
+section .text
+extern printf
 
-section .text                    ; extern printf
-
-global _start
-       _start:
+global main
+       main:
 sub rsp, 8                       ; Align the stack
 
 mov rdi, fmt                  ; set the format string
