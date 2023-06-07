@@ -9,25 +9,31 @@
   */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *temp = head;
+	const listint_t *slow, *fast;
 	size_t no_of_nodes = 0;
 
-	while (temp != NULL)
+	if (head == NULL)
+		return (no_of_nodes);
+	slow = head;
+	fast = head;
+
+	while (fast != NULL && fast->next != NULL)
 	{
-		printf("[%p] %d\n", (void *)temp, temp->n);/**prints the
+		printf("[%p] %d\n", (void *)slow, slow->n);/**prints the
 							    *addresses of
 							    *current node
 							   */
 		no_of_nodes++;
 
-		if (temp >= temp->next)
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast)
 		{
-			printf("-> [%p] %d\n", (void *)temp->next, temp->next->n);
-			printf("-> [%p] %d\n", (void *)temp->next->next, temp->next->next
-				->n);
-			exit(98);
+			printf("-> [%p] %d\n", (void *)slow, slow->n);
+			no_of_nodes++;
+			break;
 		}
-		temp = temp->next;/*moving to the next node*/
 	}
 
 	return (no_of_nodes);
