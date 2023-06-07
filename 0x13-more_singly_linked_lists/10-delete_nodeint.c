@@ -21,7 +21,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		temp = *head;/*storing the current head node in the temp variable*/
 		*head = (*head)->next;
 		free(temp);
-		return (-1);
+		return (1);
 	}
 
 	pres = *head;
