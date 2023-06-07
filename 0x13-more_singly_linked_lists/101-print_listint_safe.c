@@ -1,38 +1,34 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * main - check the code
- *
- * Return: Always 0.
- */
-int main(void)
+  *print_listint_safe - a function that prints out the elements of a linked
+  *list
+  *@head: head node of the linked list
+  *Return: number of nodes in the linked lists
+  */
+size_t print_listint_safe(const listint_t *head)
 {
-    listint_t *head;
-    listint_t *head2;
-    listint_t *node;
+	const listint_t *temp = head;
+	size_t no_of_nodes = 0;
 
-    head2 = NULL;
-    add_nodeint(&head2, 0);
-    add_nodeint(&head2, 1);
-    add_nodeint(&head2, 2);
-    add_nodeint(&head2, 3);
-    add_nodeint(&head2, 4);
-    add_nodeint(&head2, 98);
-    add_nodeint(&head2, 402);
-    add_nodeint(&head2, 1024);
-    print_listint_safe(head2);
-    head = NULL;
-    node = add_nodeint(&head, 0);
-    add_nodeint(&head, 1);
-    add_nodeint(&head, 2);
-    add_nodeint(&head, 3);
-    add_nodeint(&head, 4);
-    node->next = add_nodeint(&head, 98);
-    add_nodeint(&head, 402);
-    add_nodeint(&head, 1024);
-    print_listint_safe(head);
-    return (0);
+	while (temp != NULL)
+	{
+		printf("[%p]%d\n", (void *)temp, temp->n);/**prints the
+							    *addresses of
+							    *current node
+							   */
+		no_of_nodes++;
+
+		if (temp >= temp->next)
+		{
+			printf("-> [%p]%d\n", (void *)temp->next, temp->next->n);
+			printf("-> [%p]%d\n", (void *)temp->next->next, temp->next->next
+				->n);
+			exit(98);
+		}
+		temp = temp->next;/*moving to the next node*/
+	}
+
+	return (no_of_nodes);
 }
