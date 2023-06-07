@@ -14,7 +14,7 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (temp != NULL)
 	{
-		printf("[%p]%d\n", (void *)temp, temp->n);/**prints the
+		printf("[%p] %d\n", (void *)temp, temp->n);/**prints the
 							    *addresses of
 							    *current node
 							   */
@@ -22,8 +22,8 @@ size_t print_listint_safe(const listint_t *head)
 
 		if (temp >= temp->next)
 		{
-			printf("-> [%p]%d\n", (void *)temp->next, temp->next->n);
-			printf("-> [%p]%d\n", (void *)temp->next->next, temp->next->next
+			printf("-> [%p] %d\n", (void *)temp->next, temp->next->n);
+			printf("-> [%p] %d\n", (void *)temp->next->next, temp->next->next
 				->n);
 			exit(98);
 		}
