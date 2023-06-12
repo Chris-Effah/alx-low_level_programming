@@ -24,28 +24,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (file == NULL)
 		return (0);
 
-	buffer = malloc((letters + 1) * sizeof(char));
-	if (buffer == NULL)
-	{
-		fclose(file);
-		return (0);
-	}
+	buffer = malloc(letters  * sizeof(char));
 
 	read_file = fread(buffer, sizeof(char), letters, file);
-	if (read_file <= 0)
-	{
-		fclose(file);
-		free(buffer);
-		return (0);
-	}
-
 	write_file = fwrite(buffer, sizeof(char), read_file, stdout);
-	if (write_file < read_file)
-	{
-		fclose(file);
-		free(buffer);
-		return (0);
-	}
+
 	fclose(file);
 	free(buffer);
 	return (write_file);
