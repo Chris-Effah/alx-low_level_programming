@@ -10,7 +10,6 @@
 int append_text_to_file(const char *filename, char *text_content)
 {
 	FILE *file;
-	int success;
 
 	if (filename == NULL)
 		return (-1);
@@ -23,11 +22,8 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (file == NULL)
 		return (-1);
 
-	success = fprintf(file, "%s", text_content);
+	fprintf(file, "%s", text_content);
 	fclose(file);
 
-	if (success < 0)
-		return (-1);
-	else
-		return (1);
+	return (1);
 }

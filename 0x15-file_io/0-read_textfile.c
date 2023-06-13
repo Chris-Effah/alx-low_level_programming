@@ -12,8 +12,8 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *buffer;
-	ssize_t read_file, write_file;
+	char *buffer = 0;
+	ssize_t read_file, write_file = 0;
 	FILE *file;
 
 	if (filename == NULL)
