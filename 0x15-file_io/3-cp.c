@@ -60,7 +60,7 @@ void cp_file(const char *file_from, const char *file_to)
 	}
 	if (by_rd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from the file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 	if (close(fd_from) == -1 || close(fd_to) == -1)
