@@ -55,14 +55,12 @@ void cp_file(const char *file_from, const char *file_to)
 		if (by_wr != by_rd)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			free(buffer);
 			exit(99);
 		}
 	}
 	if (by_rd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from the file %s\n", file_from);
-		free(buffer);
 		exit(98);
 	}
 	if (close(fd_from) == -1 || close(fd_to) == -1)
