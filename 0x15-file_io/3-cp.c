@@ -42,7 +42,7 @@ void cp_file(const char *file_from, const char *file_to)
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
+	fd_to = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, S_IRUSR | S_IWUSR
 			| S_IRGRP | S_IROTH);
 	if (fd_to == -1)
 	{
