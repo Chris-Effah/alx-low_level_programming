@@ -54,7 +54,8 @@ void cp_file(const char *file_from, const char *file_to)
 		print_err_and_exit("Can't read from file", file_from);
 	}
 
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
+			| S_IRGRP | S_IROTH);
 	if (fd_to == -1)
 	{
 		print_err_and_exit("Can't write to file", file_to);
@@ -83,7 +84,7 @@ void cp_file(const char *file_from, const char *file_to)
 /**
   * main - entry point
   * @argc: number of arguments
-  * @argv[]: arguments passed
+  * @argv: arguments passed
   * Return: 0 if successful
   */
 int main(int argc, char *argv[])
