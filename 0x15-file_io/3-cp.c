@@ -49,11 +49,9 @@ void cp_file(const char *file_from, const char *file_to)
 		exit(99);
 	}
 	buffer = create_buffer(file_to);
-
 	while ((by_rd = read(fd_from, buffer, BUFF_SIZE)) > 0)
 	{
 		by_wr = write(fd_to, buffer, by_rd);
-
 		if (by_wr != by_rd)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
