@@ -32,15 +32,10 @@ char *create_buffer(const char *file)
 
 void cp_file(const char *file_from, const char *file_to)
 {
-	int fd_from = 0, fd_to = 0;
+	int fd_from, fd_to;
 	char *buffer;
 	ssize_t by_rd, by_wr;
 
-	if (close(fd_from) == -1 || close(fd_to) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
-		exit(100);
-	}
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 	{
@@ -54,7 +49,7 @@ void cp_file(const char *file_from, const char *file_to)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
-	buffer = create_buffer(file_from);
+	buffer = create_buffer(file_to);
 
 	while ((by_rd = read(fd_from, buffer, BUFF_SIZE)) > 0)
 	{
@@ -70,6 +65,11 @@ void cp_file(const char *file_from, const char *file_to)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from the file%s\n", file_from);
 		exit(98);
+	}
+	if (close(fd_from) == -1 || close(fd_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+		exit(100);
 	}
 	free(buffer);
 }
