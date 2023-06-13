@@ -73,7 +73,7 @@ void cp_file(const char *file_from, const char *file_to)
 			}
 		}
 		if (by_rd == -1)
-			print_err_and_exit("Can't ead from the file", file_from);
+			print_err_and_exit("Can't read from the file", file_from);
 
 		if (close(fd_from) == -1 || close(fd_to) == -1)
 			print_err_and_exit("Can't close file descriptor", "");
