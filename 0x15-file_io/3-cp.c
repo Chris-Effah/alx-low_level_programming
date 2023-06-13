@@ -57,17 +57,20 @@ void cp_file(const char *file_from, const char *file_to)
 		if (by_wr != by_rd)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			free(buffer);
 			exit(99);
 		}
 	}
 	if (by_rd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from the file %s\n", file_from);
+		free(buffer);
 		exit(98);
 	}
 	if (close(fd_from) == -1 || close(fd_to) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+		free(buffer);
 		exit(100);
 	}
 	free(buffer);
@@ -80,7 +83,6 @@ void cp_file(const char *file_from, const char *file_to)
  */
 int main(int argc, char *argv[])
 {
-
 	const char *file_from, *file_to;
 
 	if (argc != 3)
@@ -92,6 +94,7 @@ int main(int argc, char *argv[])
 	file_from = argv[1];
 	file_to = argv[2];
 	cp_file(file_from, file_to);
+
 
 	return (0);
 }
