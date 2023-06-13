@@ -5,11 +5,11 @@
 #define BUFF_SIZE 1024
 
 /**
-  * print_err_and_exit - a function that prints error when an error is
-  * encountered and exits
-  * @error: error message
-  * Return: Void
-  */
+ * print_err_and_exit - a function that prints error when an error is
+ * encountered and exits
+ * @error: error message
+ * Return: Void
+ */
 void print_err_and_exit(const char *error)
 {
 	dprintf(STDERR_FILENO, "%s\n", error);
@@ -17,11 +17,11 @@ void print_err_and_exit(const char *error)
 }
 
 /**
-  * cp_file - copies text from one file to another
-  * @file_from: source file
-  * @file_to: destination file.
-  * Return: Void
-  */
+ * cp_file - copies text from one file to another
+ * @file_from: source file
+ * @file_to: destination file.
+ * Return: Void
+ */
 void cp_file(const char *file_from, const char *file_to)
 {
 	int fd_from, fd_to;
@@ -42,7 +42,7 @@ void cp_file(const char *file_from, const char *file_to)
 	{
 		by_wr = write(fd_to, buffer, by_rd);
 
-		if (by_wr != by_rd)
+		if (by_wr == -1 || by_wr != by_rd)
 			print_err_and_exit("Error: Can't write to file");
 	}
 
@@ -51,16 +51,14 @@ void cp_file(const char *file_from, const char *file_to)
 
 	if (close(fd_from) == -1 || close(fd_to) == -1)
 		print_err_and_exit("Error: Can't close file descriptor");
-
-	printf("File copied succesfullly.\n");
 }
 
 /**
-  * main - entry point
-  * @argc: number of arguments
-  * @argv: arguments passed
-  * Return: 0 if a success
-  */
+ * main - entry point
+ * @argc: number of arguments
+ * @argv: arguments passed
+ * Return: 0 if a success
+ */
 int main(int argc, char *argv[])
 {
 	const char *file_from, *file_to;
@@ -71,6 +69,12 @@ int main(int argc, char *argv[])
 	}
 	file_from = argv[1];
 	file_to = argv[2];
+
+	if (strcmp(file_from, file_to) == 0)
+	{
+		print_err_and_exit("Error: Source and destination files are the same");
+	}
+
 	cp_file(file_from, file_to);
 
 	return (0);
