@@ -67,9 +67,8 @@ void cp_file(const char *file_from, const char *file_to)
 	}
 	if (close(fd_from) == -1 || close(fd_to) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from ==
-				-1 ? fd_from : fd_to);
-		free(buffer);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n",
+				fd_from == -1 ? fd_from : fd_to);
 		exit(100);
 	}
 	free(buffer);
