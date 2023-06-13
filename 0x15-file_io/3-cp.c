@@ -32,17 +32,22 @@ char *create_buffer(const char *file)
 
 void cp_file(const char *file_from, const char *file_to)
 {
-	int fd_from, fd_to;
+	int fd_from = 0, fd_to = 0;
 	char *buffer;
 	ssize_t by_rd, by_wr;
 
+	if (close(fd_from) == -1 || close(fd_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+		exit(100);
+	}
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	fd_to = open(file_to, O_WRONLY | O_APPEND | O_TRUNC, S_IRUSR | S_IWUSR
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
 			| S_IRGRP | S_IROTH);
 	if (fd_to == -1)
 	{
@@ -65,11 +70,6 @@ void cp_file(const char *file_from, const char *file_to)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from the file%s\n", file_from);
 		exit(98);
-	}
-	if (close(fd_from) == -1 || close(fd_to) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
-		exit(100);
 	}
 	free(buffer);
 }
