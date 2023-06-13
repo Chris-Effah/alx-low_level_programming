@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#define BUFF_SIZE 1024
 
 /**
   * print_err_and_exit - a function that prints an error message when an error
@@ -27,11 +26,11 @@ char *create_buff(const char *file)
 {
 	char *buffer;
 
-	buffer = malloc(sizeof(char) * BUFF_SIZE);
+	buffer = malloc(sizeof(char) * 1024);
 
 	if (buffer == NULL)
 	{
-		print_err_and_exit("Can't allocate memory for buffer", file);
+		print_err_and_exit("Can't write to file", file);
 	}
 	return (buffer);
 }
