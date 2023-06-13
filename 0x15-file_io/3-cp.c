@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 #define BUFF_SIZE 1024
 
 /**
