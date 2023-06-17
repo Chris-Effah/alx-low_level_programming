@@ -19,7 +19,7 @@ void close_elf(int elf);
 
 /**
  * check_elf - Checks for an ELF file.
- * @e_ident: ELF magic numbers.
+ * @e_ident: an array that contains the ELF magic numbers.
  *
  * Return: Void
  */
@@ -66,7 +66,7 @@ void print_magic(unsigned char *e_ident)
 
 /**
  * print_class - a function that prints the class of an ELF header.
- * @e_ident: the ELF class.
+ * @e_ident: an array that contains the ELF class.
  */
 void print_class(unsigned char *e_ident)
 {
