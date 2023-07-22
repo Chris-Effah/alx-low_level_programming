@@ -3,15 +3,15 @@
 #include <stdlib.h>
 
 /**
- * main - generate a key depending on a username for crackme5
+ * main - generate a key based on the username provided
  * @argc: number of arguments passed
- * @argv: arguments passed to main
- * Return: 0 on success, 1 on error
+ * @argv: arguments passed
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
-	unsigned int i, j;
-	size_t len, add;
+	unsigned int x, y;
+	size_t length, add;
 	char *l = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 	char p[7] = "      ";
 
@@ -20,25 +20,35 @@ int main(int argc, char *argv[])
 		printf("Correct usage: ./keygen5 username\n");
 		return (1);
 	}
-	len = strlen(argv[1]);
-	p[0] = l[(len ^ 59) & 63];
-	for (i = 0, add = 0; i < len; i++)
-		add += argv[1][i];
+	length = strlen(argv[1]);
+	p[0] = l[(length ^ 59) & 63];
+
+	x = 0;
+	add = 0;
+	while (x < length)
+	{
+
+		add += argv[1][x];
+		x++;
+	}
+
 	p[1] = l[(add ^ 79) & 63];
-	for (i = 0, j = 1; i < len; i++)
-		j *= argv[1][i];
-	p[2] = l[(j ^ 85) & 63];
-	for (j = argv[1][0], i = 0; i < len; i++)
-		if ((char)j <= argv[1][i])
-			j = argv[1][i];
-	srand(j ^ 14);
+
+	for (x = 0, y = 1; x < length; x++)
+		y *= argv[1][x];
+	p[2] = l[(y ^ 85) & 63];
+
+	for (y = argv[1][0], x = 0; x < length; x++)
+		if ((char)y <= argv[1][x])
+			y = argv[1][x];
+	srand(y ^ 14);
 	p[3] = l[rand() & 63];
-	for (j = 0, i = 0; i < len; i++)
-		j += argv[1][i] * argv[1][i];
-	p[4] = l[(j ^ 239) & 63];
-	for (j = 0, i = 0; (char)i < argv[1][0]; i++)
-		j = rand();
-	p[5] = l[(j ^ 229) & 63];
+	for (y = 0, x = 0; x < length; x++)
+		y += argv[1][x] * argv[1][x];
+	p[4] = l[(y ^ 239) & 63];
+	for (y = 0, x = 0; (char)x < argv[1][0]; x++)
+		y = rand();
+	p[5] = l[(y ^ 229) & 63];
 	printf("%s\n", p);
 	return (0);
 }
