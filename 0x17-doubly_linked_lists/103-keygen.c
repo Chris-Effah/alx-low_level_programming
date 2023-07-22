@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 	add = 0;
 	while (x < length)
 	{
-
 		add += argv[1][x];
 		x++;
 	}
