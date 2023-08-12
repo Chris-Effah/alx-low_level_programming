@@ -8,23 +8,22 @@
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *htable = NULL;
-	shash_node_t **new_array;
 
 	if (size == 0)
 		return (NULL);
 
-	ht = malloc(sizeof(shash_table_t));
-	if (ht == NULL)
+	htable = malloc(sizeof(shash_table_t));
+	if (htable == NULL)
 		return (NULL);
-	ht->size = size;
-	ht->array = calloc(size, sizeof(shash_node_t *));
-	if (ht->array == NULL)
+	htable->size = size;
+	htable->array = calloc(size, sizeof(shash_node_t *));
+	if (htable->array == NULL)
 	{
-		free(ht);
+		free(htable);
 		return (NULL);
 	}
-	ht->shead = NULL;
-	ht->stail = NULL;
+	htable->shead = NULL;
+	htable->stail = NULL;
 
-	return (ht);
+	return (htable);
 }
