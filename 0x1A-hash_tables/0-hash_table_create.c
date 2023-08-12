@@ -7,8 +7,8 @@
   */
 hash_table_t *hash_table_create(unsigned long int size)
 {
-	hash_table_t *htable;
-	hash_node_t **new_array;
+	hash_table_t *htable = NULL;
+	hash_node_t **new_array = NULL;
 
 	if (size == 0)
 		return (NULL);
