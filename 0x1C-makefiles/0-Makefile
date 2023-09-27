@@ -1,0 +1,9 @@
+#a makefile for a file named school
+CC=gcc
+CFLAGS=-Wall -Werror
+all: school
+school: main.c school.c
+	$(CC) $(CFLAGS) -o school main.c school.c
+
+clean:
+	rm -f school
