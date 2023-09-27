@@ -1,10 +1,10 @@
 #a makefile for an executtable named school
 CC=gcc
-SRC=$(wildcard *.c)
+SRC=main.c school.c
 OBJ=$(SRC:.c=.o)
 NAME=school
 
-all: $(NAMME)
+all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ)
 
