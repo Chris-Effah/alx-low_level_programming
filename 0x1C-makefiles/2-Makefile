@@ -10,7 +10,7 @@ $(NAME): $(SRC)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 %.o : %.c
-	%(CC) -c $<
+	$(CC) -c $<
 
 
 clean:
