@@ -1,0 +1,11 @@
+#a makefile for an executtable named school
+CC=gcc
+CFLAGS=-Wall -Werror
+SRC=school.c main.c
+
+all: school
+school: $(SRC)
+	$(CC) $(CFLAGS) -o school $(SRC)
+
+clean:
+	rm -f school
